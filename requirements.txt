@@ -1,2 +1,2 @@
-ats-jobs-engine @ https://codeload.github.com/AnshumanAtrey/ats-jobs-engine/tar.gz/refs/tags/v0.6.7  # the search, matching and charging shared by every job actor; it pins apify>=4.2,<5
+ats-jobs-engine @ https://codeload.github.com/AnshumanAtrey/ats-jobs-engine/tar.gz/refs/tags/v0.6.8  # the search, matching and charging shared by every job actor; it pins apify>=4.2,<5
 curl_cffi==0.17.0  # HiringCafe's Cloudflare answers only a browser's TLS and headers

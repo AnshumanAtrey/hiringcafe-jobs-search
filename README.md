@@ -262,7 +262,7 @@ Hiring Cafe Jobs Scraper reads public job postings, the pages any visitor sees w
 - A few career sites give HiringCafe no place for a job (8 of 100 jobs in one run, all from one employer); those rows have no `location`, and a place search leaves them out.
 - One employer can post the same job on two of its career sites (T. Rowe Price on 2026-11-10); the run keeps it once, the newest.
 - HiringCafe keeps no closed jobs in its search, and a job it removed reads as not found when its link is checked.
-- On Apify every run reads HiringCafe through Apify's residential proxy, because HiringCafe's Cloudflare challenges Apify's own addresses (10 runs of 10, 2026-11-10). A run that meets 12 challenged addresses stops reading there and keeps what it read; jobs whose details were not read yet are saved without them and charged as plain jobs (2,000-job and 50-detailed-job runs met 10 and 21 on 2026-11-10).
+- On Apify every run reads HiringCafe through Apify's residential proxy, because HiringCafe's Cloudflare challenges Apify's own addresses (10 runs of 10, 2026-11-10). About one call in six is challenged and tried again from a fresh address; a run that meets 12 challenged addresses in a row stops reading there and keeps what it read, and jobs whose details were not read yet are saved without them and charged as plain jobs.
 - Run outside Apify with no proxy, it calls HiringCafe from its own address 2 seconds apart, waits out a block and goes on 10 seconds a call.
 
 ## Who maintains it?

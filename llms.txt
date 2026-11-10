@@ -58,7 +58,7 @@ Apify's free $5 monthly credit covers about 39,000 jobs in runs of 100.
 
 ## Speed
 
-Seconds to a couple of minutes: on Apify on 2026-11-10 (512 MB, residential proxy) the form as it opens took 22 s for 100 jobs, software engineer 39 s, registered nurse in Texas 23 s, 50 jobs with full details 47 s and 2,000 data analyst jobs 133 s; a place HiringCafe does not list ends the run in 5 s. A run that meets 12 challenged proxy addresses stops there and keeps what it read.
+Seconds to a couple of minutes: on Apify on 2026-11-10 (512 MB, residential proxy) the form as it opens took 22 s for 100 jobs, software engineer 39 s, registered nurse in Texas 23 s, 50 jobs with full details 47 s and 2,000 data analyst jobs 133 s; a place HiringCafe does not list ends the run in 5 s. A run that meets 12 challenged proxy addresses in a row stops there and keeps what it read.
 
 ## How to call it
 
