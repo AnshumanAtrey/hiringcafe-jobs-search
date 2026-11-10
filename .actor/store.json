@@ -1,5 +1,6 @@
 {
- "$comment": "Listing metadata, applied by scripts/store-metadata.mjs (manager/rules/SEO.md) by CI after every deploy. No actorId until the first deploy creates the Actor (then pinned here, so a rename keeps the same Actor). isPublic stays false: the owner publishes after the priced proof run.",
+ "$comment": "Listing metadata, applied by scripts/store-metadata.mjs (manager/rules/SEO.md) by CI after every deploy. The actorId pins the Actor the first deploy created (2026-11-10, build 1.0.1), so a rename keeps the same Actor. isPublic stays false: the owner publishes after the priced proof run.",
+ "actorId": "jbb46HdUquQ4jY1Y7",
  "seoTitle": "Hiring Cafe Jobs Scraper - Newest Jobs & Apply Links",
  "seoDescription": "Scrape HiringCafe jobs by title, city or country, newest first: the employer's own apply link, published pay, seniority, skills, company size. No login.",
  "exampleRunInput": {
