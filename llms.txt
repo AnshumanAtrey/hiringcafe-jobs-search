@@ -37,27 +37,28 @@ Source: https://github.com/AnshumanAtrey/hiringcafe-jobs-search
 - Leave out words (excludeTerms): drops jobs whose title has these words.
 - Wider match (searchDescriptions): every job HiringCafe's search box finds for the words anywhere in the ad.
 - Job links to check (jobUrls): HiringCafe job links or 16-character job IDs.
-- Connection (proxyConfiguration): off by default; the run moves to Apify's residential proxy by itself when challenged.
+- Connection (proxyConfiguration): leave it as it is; on Apify every run uses Apify's residential proxy at our cost, included in the price. Set one only to use your own proxy.
 
 ## Pricing
 
 PAY_PER_EVENT model, platform usage included:
 
-- Job: $0.0011 per saved job ($1.10 per 1,000), and per checked link that is closed or not found
-- Job with details: $0.0012 per saved job with full details on ($1.20 per 1,000)
-- Run start: $0.003 per GB of memory, charged by Apify when a run starts, so $0.003 at the default 512 MB
+- Job: $0.000062 per saved job ($0.062 per 1,000), and per checked link that is closed or not found; $0.00006 on BRONZE, $0.000054 on SILVER, $0.000048 on GOLD and above
+- Job with details: $0.00026 per saved job with full details on ($0.26 per 1,000); $0.00025, $0.00022 and $0.0002 on the paid tiers
+- Run start: $0.0066 per GB of memory, charged by Apify when a run starts, so $0.0066 at the default 512 MB
+- Apify's residential proxy, which every run on Apify uses, is paid by us and included
 
 Typical costs (default memory):
 
-- 100 newest jobs: $0.113
-- 100 jobs with full details: $0.123
-- 1,000 jobs: $1.10
+- 100 newest jobs: $0.0128
+- 100 jobs with full details: $0.0326
+- 1,000 jobs: $0.0686
 
-Apify's free $5 monthly credit covers about 4,400 jobs in runs of 100.
+Apify's free $5 monthly credit covers about 39,000 jobs in runs of 100.
 
 ## Speed
 
-Seconds to a minute for a few hundred jobs: on a laptop on 2026-11-10 the form as it opens took 27 s for 100 jobs, software engineer 25 s and registered nurse in California 28 s; 2,000 data analyst jobs took 10 minutes from the laptop's own address, which Cloudflare slowed down. One address gets about 80 calls 2 seconds apart before HiringCafe's Cloudflare blocks it for a while; on Apify a run then moves to the residential proxy, a fresh address every 30 calls.
+Seconds to a couple of minutes: on Apify on 2026-11-10 (512 MB, residential proxy) the form as it opens took 22 s for 100 jobs, software engineer 39 s, registered nurse in Texas 23 s, 50 jobs with full details 47 s and 2,000 data analyst jobs 133 s; a place HiringCafe does not list ends the run in 5 s. A run that meets 12 challenged proxy addresses stops there and keeps what it read.
 
 ## How to call it
 
@@ -133,7 +134,7 @@ From a local run on 2026-11-10, software engineer (fields shortened to the main 
 
 ## Differentiators vs alternatives
 
-- vs memo23/apify-hiring-cafe-scraper ($0.00125 per row, $0.005 start; the most used): the site's search passed through, 4 jobs per employer, raw nested records; this actor checks titles, reads every match of an employer, keeps published pay apart from estimates and adds visa sponsorship and company size filters, at $0.0011 a job.
+- vs memo23/apify-hiring-cafe-scraper ($0.00125 per row, $0.005 start; the most used): the site's search passed through, 4 jobs per employer, raw nested records; this actor checks titles, reads every match of an employer, keeps published pay apart from estimates and adds visa sponsorship and company size filters, at $0.000062 a job.
 - vs blackfalcondata/hiringcafe-scraper ($0.00115 per row, $0.005 start): 50 country markets, radius, incremental mode and notifications; this actor takes cities, states, regions and old city names, checks titles and reads every match of an employer.
 - vs parsebird/hiring-cafe-scraper ($0.003 per job): a stealth browser on a residential proxy at 4 GB; this actor reads the same search with plain HTTP at 512 MB.
 

@@ -2,7 +2,7 @@
 
 Hiring Cafe jobs scraper and API: search HiringCafe (hiringcafe.com, formerly hiring.cafe), the job search engine built from 6 million jobs on employers' own career sites, live by job title, place, remote or hybrid, posting date, years of experience, seniority, published salary, company size and visa sponsorship, and get each job's title, company, places, work arrangement, job type, seniority, years asked, published pay, tools and skills, requirements, the employer's own apply link and the hiring system it came from, newest first. Turn on full details for the description.
 
-Use it as a HiringCafe API with no login and no API key, a hiring.cafe job scraper, an ATS jobs feed or a daily job alert from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent, and export JSON, CSV or Excel. Every row's title holds the words you typed, an employer's every match is read (not only the 4 the site shows), and a pasted HiringCafe search link keeps its filters. Available as an [Apify Actor](https://apify.com/anshumanatrey/hiringcafe-jobs-search). $0.0011 per job, $0.0012 with full details, $0.003 per run start at the default memory.
+Use it as a HiringCafe API with no login and no API key, a hiring.cafe job scraper, an ATS jobs feed or a daily job alert from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent, and export JSON, CSV or Excel. Every row's title holds the words you typed, an employer's every match is read (not only the 4 the site shows), and a pasted HiringCafe search link keeps its filters. Available as an [Apify Actor](https://apify.com/anshumanatrey/hiringcafe-jobs-search). $0.000062 per job, $0.00026 with full details, $0.0066 per run start at the default memory, Apify's residential proxy included.
 
 ## What does it do?
 
@@ -22,7 +22,7 @@ Use it as a HiringCafe API with no login and no API key, a hiring.cafe job scrap
 - **Visa sponsorship and company size as filters.** Tick Sponsors visas (`visaSponsorship`) or pick company sizes (`companySize`), and HiringCafe's own search applies them; no other Hiring Cafe actor offers either.
 - **Places, regions and other names.** EMEA, LatAm, DACH and other regions, US state codes and Indian cities by their old and new names, besides cities and countries.
 - **Clean, flat rows.** One row per job with plain fields, not HiringCafe's nested records: pay as numbers, places as text, skills as a list.
-- **No browser, no third-party scraping keys.** It reads HiringCafe's JSON with a browser's TLS and moves to Apify's residential proxy by itself if HiringCafe's Cloudflare challenges the run's address, at no extra cost to you.
+- **No browser, no third-party scraping keys.** It reads HiringCafe's JSON with a browser's TLS. On Apify every run goes through Apify's residential proxy, at our cost and included in the price.
 
 ## When should I use it?
 
@@ -33,19 +33,21 @@ Use it as a HiringCafe API with no login and no API key, a hiring.cafe job scrap
 
 ## How much does it cost to scrape Hiring Cafe jobs?
 
-Pay per event: $1.10 per 1,000 jobs, or $1.20 per 1,000 with full details, plus $0.003 per run at the default 512 MB. Apify's free $5 monthly credit covers about 4,400 jobs in runs of 100. Platform usage is included, and there is no monthly fee.
+Pay per event: $0.062 per 1,000 jobs, or $0.26 per 1,000 with full details, plus $0.0066 per run at the default 512 MB. Apify's free $5 monthly credit covers about 39,000 jobs in runs of 100. Platform usage is included, and there is no monthly fee. On Apify every run reads HiringCafe through Apify's residential proxy, because HiringCafe's Cloudflare challenges Apify's own addresses: that proxy is paid by us and included in the price.
 
 | Event | Price | When it is charged |
 |---|---|---|
-| Job | $0.0011 | One saved job, and one checked link that is closed or not found |
-| Job with details | $0.0012 | One saved job with full details on |
-| Run start | $0.003 per GB of memory | Charged by Apify when a run starts: once up to 1 GB and once more for each extra GB, so $0.003 at the default 512 MB |
+| Job | $0.000062 | One saved job, and one checked link that is closed or not found |
+| Job with details | $0.00026 | One saved job with full details on |
+| Run start | $0.0066 per GB of memory | Charged by Apify when a run starts: once up to 1 GB and once more for each extra GB, so $0.0066 at the default 512 MB |
+
+On Apify's paid plans a job costs less: $0.00006 on BRONZE, $0.000054 on SILVER and $0.000048 on GOLD and above; a job with details $0.00025, $0.00022 and $0.0002.
 
 | Run (default memory) | Cost |
 |---|---|
-| 100 newest jobs | $0.113 |
-| 100 jobs with full details | $0.123 |
-| 1,000 jobs | $1.10 |
+| 100 newest jobs | $0.0128 |
+| 100 jobs with full details | $0.0326 |
+| 1,000 jobs | $0.0686 |
 
 ## How does the price compare with other Hiring Cafe scrapers?
 
@@ -61,9 +63,9 @@ Every actor on the Apify Store whose title or slug names Hiring Cafe and had 4 o
 | shahidirfan/hiring-cafe-jobs-scraper | 6 | $0.001 | $0.0005 | Keyword or URL, residential proxy |
 | fetch_cat/hiring-cafe-jobs-scraper | 5 | $0.0001955 | $0.023 | Listings, apply links, salaries |
 | manojachari/hiring-cafe-scraper | 4 | free | none | Keyword and filters |
-| This actor | new | $0.0011, $0.0012 with details | $0.003 per GB | Titles, places, pay, seniority, company size, visa sponsorship, live |
+| This actor | new | $0.000062, $0.00026 with details | $0.0066 per GB | Titles, places, pay, seniority, company size, visa sponsorship, live |
 
-Where others are cheaper: azzouzana and shahidirfan charge $0.001 a job and fetch_cat less than $0.0002 a job after a larger start fee, and manojachari is free. Where others do more: blackfalcondata and memo23 track changes between runs and blackfalcondata sends Telegram, Slack and webhook alerts; memo23 and blackfalcondata take a radius around a point and description and technology keywords.
+Where others are cheaper: manojachari is free. Where others do more: blackfalcondata and memo23 track changes between runs and blackfalcondata sends Telegram, Slack and webhook alerts; memo23 and blackfalcondata take a radius around a point and description and technology keywords.
 
 ## Which inputs does it take?
 
@@ -88,7 +90,7 @@ Nothing is required. Type a job title and press Start, or press Start with the f
 | Leave out words (`excludeTerms`) | Drops jobs whose title has these words, such as senior or intern |
 | Wider match (`searchDescriptions`) | Every job HiringCafe's search box finds for your words anywhere in the ad |
 | Job links to check (`jobUrls`) | HiringCafe job links or IDs, to check whether they are still open, instead of searching |
-| Connection (`proxyConfiguration`) | Off by default: the run moves to Apify's residential proxy by itself when HiringCafe challenges its address. Set one only to use your own |
+| Connection (`proxyConfiguration`) | Leave it as it is: on Apify every run uses Apify's residential proxy, at our cost. Set a proxy only to use your own instead |
 
 Example input:
 
@@ -164,7 +166,7 @@ Full details add `description`, `descriptionHtml`, `city`, `region` (the state o
 
 ## How fast is it?
 
-Seconds to a minute for a few hundred jobs. On this laptop on 2026-11-10 (`apify run`, 75 to 84 MB of memory): the form as it opens (100 newest jobs) took 27 s, software engineer 25 s, nurse in California typed in one line (50 jobs) 15 s, registered nurse in California in the last 7 days 28 s, hybrid data analyst jobs in London 16 s (all 50 of the month), 20 remote product manager jobs in the United States with published pay of $150,000 or more and full details 45 s (one more call a job), 10 job links checked 44 s, and a search with no match 5 s. One search page holds about 130 jobs of 40 employers; the employers that show 4 jobs are read further, one call each. 2,000 data analyst jobs took 10 minutes from the laptop's own address (84 calls, 84 MB at the peak): Cloudflare blocked it twice and then challenged it, so the run waited, slowed down and saved the 2,000 newest it had, saying that some employers' lists past their 4 jobs were not read. One address gets about 80 calls 2 seconds apart before HiringCafe's Cloudflare blocks it for a minute or more, so a run without a proxy then waits and goes on 10 seconds a call; on Apify a run moves to the residential proxy at the first block, half a second between calls and a fresh address every 30 calls.
+Seconds to a couple of minutes. On Apify on 2026-11-10 (512 MB, every run through Apify's residential proxy): the form as it opens (100 newest jobs) took 22 s, software engineer 39 s, registered nurse in Texas in the last 7 days 23 s, 50 remote product manager jobs in the United States with published pay of $150,000 or more and full details 47 s (one more call a job), 2,000 data analyst jobs 133 s, and a place HiringCafe does not list 5 s. One search page holds about 130 jobs of 40 employers; the employers that show 4 jobs are read further, one call each. HiringCafe's Cloudflare challenges about one call in six on residential addresses, and a challenged call is tried again from a fresh address.
 
 ## Common questions
 
@@ -190,11 +192,11 @@ Type the least yearly pay in Minimum yearly pay (`minSalary`), such as 150000 or
 
 ### Does it need a login, an API key or a proxy?
 
-Hiring Cafe Jobs Scraper needs no HiringCafe login and no API key: it reads the same public search any visitor's browser reads. HiringCafe's Cloudflare answers only a browser, so the actor speaks with a browser's TLS, and when Cloudflare challenges the run's own address it moves to Apify's residential proxy by itself, a fresh address at each challenge, at no extra cost to you. You need only an Apify account.
+Hiring Cafe Jobs Scraper needs no HiringCafe login and no API key: it reads the same public search any visitor's browser reads. HiringCafe's Cloudflare answers only a browser, so the actor speaks with a browser's TLS, and it challenges Apify's own addresses, so on Apify every run goes through Apify's residential proxy from its first call, a fresh address and session at each challenge. We pay for that proxy and it is included in the price. You need only an Apify account; to use a proxy of your own instead, set it in Connection (`proxyConfiguration`).
 
 ### Does it work on Apify's free plan?
 
-Hiring Cafe Jobs Scraper works on Apify's free plan, which pays $0.0011 a job plus the $0.003 run start at the default 512 MB. The free $5 monthly credit pays for about 4,400 jobs in runs of 100.
+Hiring Cafe Jobs Scraper works on Apify's free plan, which pays $0.000062 a job plus the $0.0066 run start at the default 512 MB. The free $5 monthly credit pays for about 39,000 jobs in runs of 100.
 
 ### How often should I run it?
 
@@ -260,7 +262,8 @@ Hiring Cafe Jobs Scraper reads public job postings, the pages any visitor sees w
 - A few career sites give HiringCafe no place for a job (8 of 100 jobs in one run, all from one employer); those rows have no `location`, and a place search leaves them out.
 - One employer can post the same job on two of its career sites (T. Rowe Price on 2026-11-10); the run keeps it once, the newest.
 - HiringCafe keeps no closed jobs in its search, and a job it removed reads as not found when its link is checked.
-- HiringCafe's Cloudflare blocks one address for a minute or more after about 80 calls 2 seconds apart. A run on Apify moves to a residential address at the first block; without a proxy it waits a block out (three times at most) and goes on 10 seconds a call, and a fourth block ends the reading with the jobs read so far saved.
+- On Apify every run reads HiringCafe through Apify's residential proxy, because HiringCafe's Cloudflare challenges Apify's own addresses (10 runs of 10, 2026-11-10). A run that meets 12 challenged addresses stops reading there and keeps what it read; jobs whose details were not read yet are saved without them and charged as plain jobs (2,000-job and 50-detailed-job runs met 10 and 21 on 2026-11-10).
+- Run outside Apify with no proxy, it calls HiringCafe from its own address 2 seconds apart, waits out a block and goes on 10 seconds a call.
 
 ## Who maintains it?
 
