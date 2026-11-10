@@ -1,0 +1,363 @@
+{
+ "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only), once the Actor is public. Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Task names are unique across the whole Apify account, so each carries hiringcafe. Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build. options follow defaultRunOptions in store.json.",
+ "options": {
+  "build": "latest",
+  "memoryMbytes": 512,
+  "timeoutSecs": 1800
+ },
+ "tasks": [
+  {
+   "name": "hiringcafe-jobs-last-24-hours",
+   "title": "Find the newest HiringCafe jobs posted in the last 24 hours",
+   "description": "Get the newest jobs on HiringCafe, posted on employers' own career sites in the last day, with the company, place, remote or office, seniority, published pay and the employer's apply link. Set Number of jobs to 0 to get every one, and schedule it daily for a fresh feed.",
+   "input": {
+    "searchTerms": [],
+    "location": [],
+    "workType": [],
+    "postedWithin": "24 hours",
+    "experienceYears": "",
+    "seniority": [],
+    "employmentType": [],
+    "salaryCurrency": "USD",
+    "companySize": [],
+    "visaSponsorship": false,
+    "companies": [],
+    "maxJobs": 100,
+    "includeDetails": false,
+    "excludeTerms": [],
+    "searchDescriptions": false,
+    "jobUrls": []
+   },
+   "seoTitle": "New HiringCafe Jobs in the Last 24 Hours",
+   "seoDescription": "The newest jobs posted on employers' own career sites in the last day, from HiringCafe, with pay, seniority and the apply link. Run it daily.",
+   "inputSchemaFields": [
+    "searchTerms",
+    "location",
+    "postedWithin",
+    "maxJobs"
+   ],
+   "datasetView": "jobs"
+  },
+  {
+   "name": "hiringcafe-remote-software-engineer-jobs",
+   "title": "Find remote software engineer jobs on HiringCafe",
+   "description": "Get the newest remote software engineer jobs on HiringCafe, newest first, with the company, the countries a job is open to, seniority, published pay, tools and skills, and the employer's own apply link.",
+   "input": {
+    "searchTerms": [
+     "software engineer"
+    ],
+    "location": [],
+    "workType": [
+     "remote"
+    ],
+    "postedWithin": "30 days",
+    "experienceYears": "",
+    "seniority": [],
+    "employmentType": [],
+    "salaryCurrency": "USD",
+    "companySize": [],
+    "visaSponsorship": false,
+    "companies": [],
+    "maxJobs": 100,
+    "includeDetails": false,
+    "excludeTerms": [],
+    "searchDescriptions": false,
+    "jobUrls": []
+   },
+   "seoTitle": "Remote Software Engineer Jobs from HiringCafe",
+   "seoDescription": "Remote software engineer jobs from employers' own career sites via HiringCafe, newest first, with pay, seniority, skills and the apply link.",
+   "inputSchemaFields": [
+    "searchTerms",
+    "workType",
+    "location",
+    "maxJobs"
+   ],
+   "datasetView": "jobs"
+  },
+  {
+   "name": "hiringcafe-visa-sponsorship-jobs",
+   "title": "Find jobs that sponsor work visas on HiringCafe",
+   "description": "Get the newest jobs whose ad says the employer sponsors work visas, as HiringCafe reads each ad, with the company, place, seniority, published pay and the employer's apply link. Add a job title or a country to narrow it.",
+   "input": {
+    "searchTerms": [],
+    "location": [],
+    "workType": [],
+    "postedWithin": "30 days",
+    "experienceYears": "",
+    "seniority": [],
+    "employmentType": [],
+    "salaryCurrency": "USD",
+    "companySize": [],
+    "visaSponsorship": true,
+    "companies": [],
+    "maxJobs": 100,
+    "includeDetails": false,
+    "excludeTerms": [],
+    "searchDescriptions": false,
+    "jobUrls": []
+   },
+   "seoTitle": "Visa Sponsorship Jobs from HiringCafe",
+   "seoDescription": "Jobs whose ad says the employer sponsors work visas, newest first, from HiringCafe: company, place, seniority, pay and the employer's apply link.",
+   "inputSchemaFields": [
+    "searchTerms",
+    "location",
+    "visaSponsorship",
+    "maxJobs"
+   ],
+   "datasetView": "jobs"
+  },
+  {
+   "name": "hiringcafe-data-analyst-jobs-london",
+   "title": "Find data analyst jobs in London on HiringCafe",
+   "description": "Get the newest data analyst jobs in London from HiringCafe, with the company, hybrid or office, seniority, published pay in pounds, skills and the employer's own apply link.",
+   "input": {
+    "searchTerms": [
+     "data analyst"
+    ],
+    "location": [
+     "London"
+    ],
+    "workType": [],
+    "postedWithin": "30 days",
+    "experienceYears": "",
+    "seniority": [],
+    "employmentType": [],
+    "salaryCurrency": "USD",
+    "companySize": [],
+    "visaSponsorship": false,
+    "companies": [],
+    "maxJobs": 100,
+    "includeDetails": false,
+    "excludeTerms": [],
+    "searchDescriptions": false,
+    "jobUrls": []
+   },
+   "seoTitle": "Data Analyst Jobs in London from HiringCafe",
+   "seoDescription": "Data analyst jobs in London from employers' own career sites via HiringCafe, newest first, with pay, seniority, skills and the apply link.",
+   "inputSchemaFields": [
+    "searchTerms",
+    "location",
+    "workType",
+    "maxJobs"
+   ],
+   "datasetView": "jobs"
+  },
+  {
+   "name": "hiringcafe-registered-nurse-jobs-california",
+   "title": "Find registered nurse jobs in California on HiringCafe",
+   "description": "Get the newest registered nurse jobs in California from hospital and clinic career sites via HiringCafe, with the employer, city, shift and published hourly pay, and the employer's own apply link.",
+   "input": {
+    "searchTerms": [
+     "registered nurse"
+    ],
+    "location": [
+     "California"
+    ],
+    "workType": [],
+    "postedWithin": "7 days",
+    "experienceYears": "",
+    "seniority": [],
+    "employmentType": [],
+    "salaryCurrency": "USD",
+    "companySize": [],
+    "visaSponsorship": false,
+    "companies": [],
+    "maxJobs": 100,
+    "includeDetails": false,
+    "excludeTerms": [],
+    "searchDescriptions": false,
+    "jobUrls": []
+   },
+   "seoTitle": "Registered Nurse Jobs in California from HiringCafe",
+   "seoDescription": "Registered nurse jobs in California from hospital and clinic career sites via HiringCafe, newest first, with hourly pay and the apply link.",
+   "inputSchemaFields": [
+    "searchTerms",
+    "location",
+    "postedWithin",
+    "maxJobs"
+   ],
+   "datasetView": "jobs"
+  },
+  {
+   "name": "hiringcafe-product-manager-jobs-150k",
+   "title": "Find product manager jobs paying $150,000 or more on HiringCafe",
+   "description": "Get the newest product manager jobs in the United States whose employer published pay reaching $150,000 a year, from HiringCafe, with the pay range, company, place, remote or office and the employer's apply link.",
+   "input": {
+    "searchTerms": [
+     "product manager"
+    ],
+    "location": [
+     "United States"
+    ],
+    "workType": [],
+    "postedWithin": "30 days",
+    "experienceYears": "",
+    "seniority": [],
+    "employmentType": [],
+    "salaryCurrency": "USD",
+    "companySize": [],
+    "visaSponsorship": false,
+    "companies": [],
+    "maxJobs": 100,
+    "includeDetails": false,
+    "excludeTerms": [],
+    "searchDescriptions": false,
+    "jobUrls": [],
+    "minSalary": 150000
+   },
+   "seoTitle": "Product Manager Jobs Paying $150k+ from HiringCafe",
+   "seoDescription": "US product manager jobs with a published pay reaching $150,000 a year, newest first, from HiringCafe, with company, place and the apply link.",
+   "inputSchemaFields": [
+    "searchTerms",
+    "location",
+    "minSalary",
+    "salaryCurrency",
+    "maxJobs"
+   ],
+   "datasetView": "jobs"
+  },
+  {
+   "name": "hiringcafe-entry-level-jobs",
+   "title": "Find entry level jobs posted this week on HiringCafe",
+   "description": "Get the newest entry level and no-experience jobs posted in the last 7 days on HiringCafe, with the company, place, job type, published pay and the employer's apply link. Add a job title or a place to narrow it.",
+   "input": {
+    "searchTerms": [],
+    "location": [],
+    "workType": [],
+    "postedWithin": "7 days",
+    "experienceYears": "",
+    "seniority": [
+     "no-experience",
+     "entry"
+    ],
+    "employmentType": [],
+    "salaryCurrency": "USD",
+    "companySize": [],
+    "visaSponsorship": false,
+    "companies": [],
+    "maxJobs": 100,
+    "includeDetails": false,
+    "excludeTerms": [],
+    "searchDescriptions": false,
+    "jobUrls": []
+   },
+   "seoTitle": "Entry Level Jobs This Week from HiringCafe",
+   "seoDescription": "Entry level and no-experience jobs posted this week, from employers' own career sites via HiringCafe, newest first, with pay and the apply link.",
+   "inputSchemaFields": [
+    "searchTerms",
+    "location",
+    "seniority",
+    "postedWithin",
+    "maxJobs"
+   ],
+   "datasetView": "jobs"
+  },
+  {
+   "name": "hiringcafe-startup-jobs",
+   "title": "Find jobs at startups with up to 200 employees on HiringCafe",
+   "description": "Get the newest jobs at companies with 200 employees or fewer, by HiringCafe's headcount of each company, with the company's size, funding and industries, the place, published pay and the employer's apply link.",
+   "input": {
+    "searchTerms": [
+     "engineer"
+    ],
+    "location": [],
+    "workType": [],
+    "postedWithin": "30 days",
+    "experienceYears": "",
+    "seniority": [],
+    "employmentType": [],
+    "salaryCurrency": "USD",
+    "companySize": [
+     "1-10",
+     "11-50",
+     "51-200"
+    ],
+    "visaSponsorship": false,
+    "companies": [],
+    "maxJobs": 100,
+    "includeDetails": false,
+    "excludeTerms": [],
+    "searchDescriptions": false,
+    "jobUrls": []
+   },
+   "seoTitle": "Startup Engineer Jobs from HiringCafe",
+   "seoDescription": "Engineer jobs at companies with up to 200 employees, from HiringCafe, newest first, with headcount, funding, pay and the employer's apply link.",
+   "inputSchemaFields": [
+    "searchTerms",
+    "companySize",
+    "location",
+    "maxJobs"
+   ],
+   "datasetView": "companies"
+  },
+  {
+   "name": "hiringcafe-software-engineer-jobs-bangalore",
+   "title": "Find software engineer jobs in Bangalore on HiringCafe",
+   "description": "Get the newest software engineer jobs in Bangalore (Bengaluru) from company career sites via HiringCafe, with the company, hybrid or office, years of experience asked, skills and the employer's own apply link.",
+   "input": {
+    "searchTerms": [
+     "software engineer"
+    ],
+    "location": [
+     "Bangalore"
+    ],
+    "workType": [],
+    "postedWithin": "30 days",
+    "experienceYears": "",
+    "seniority": [],
+    "employmentType": [],
+    "salaryCurrency": "USD",
+    "companySize": [],
+    "visaSponsorship": false,
+    "companies": [],
+    "maxJobs": 100,
+    "includeDetails": false,
+    "excludeTerms": [],
+    "searchDescriptions": false,
+    "jobUrls": []
+   },
+   "seoTitle": "Software Engineer Jobs in Bangalore from HiringCafe",
+   "seoDescription": "Software engineer jobs in Bangalore (Bengaluru) from company career sites via HiringCafe, newest first, with experience, skills and the apply link.",
+   "inputSchemaFields": [
+    "searchTerms",
+    "location",
+    "experienceYears",
+    "maxJobs"
+   ],
+   "datasetView": "jobs"
+  },
+  {
+   "name": "hiringcafe-jobs-with-descriptions",
+   "title": "Get HiringCafe jobs with their full descriptions",
+   "description": "Get the newest data scientist jobs on HiringCafe with each job's full description as text and HTML, besides the company, place, seniority, published pay, requirements and the employer's apply link.",
+   "input": {
+    "searchTerms": [
+     "data scientist"
+    ],
+    "location": [],
+    "workType": [],
+    "postedWithin": "30 days",
+    "experienceYears": "",
+    "seniority": [],
+    "employmentType": [],
+    "salaryCurrency": "USD",
+    "companySize": [],
+    "visaSponsorship": false,
+    "companies": [],
+    "maxJobs": 50,
+    "includeDetails": true,
+    "excludeTerms": [],
+    "searchDescriptions": false,
+    "jobUrls": []
+   },
+   "seoTitle": "Data Scientist Jobs with Descriptions from HiringCafe",
+   "seoDescription": "Data scientist jobs with their full descriptions, from employers' own career sites via HiringCafe, newest first, with pay and the apply link.",
+   "inputSchemaFields": [
+    "searchTerms",
+    "includeDetails",
+    "maxJobs"
+   ],
+   "datasetView": "details"
+  }
+ ]
+}

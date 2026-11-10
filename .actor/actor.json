@@ -1,0 +1,656 @@
+{
+    "actorSpecification": 1,
+    "name": "hiringcafe-jobs-search",
+    "title": "Hiring Cafe Jobs Scraper & API - Salary & Visa Sponsorship Jobs",
+    "description": "Hiring Cafe jobs scraper and API for HiringCafe (hiring.cafe): search 6 million jobs from employers' own career sites, newest first. Filter by title, place, remote, salary, seniority, experience and visa sponsorship; each row has the employer's apply link, ATS, pay and company facts.",
+    "version": "1.0",
+    "buildTag": "latest",
+    "categories": [
+        "JOBS",
+        "LEAD_GENERATION"
+    ],
+    "input": "./INPUT_SCHEMA.json",
+    "output": "./output_schema.json",
+    "dockerfile": "../Dockerfile",
+    "readme": "../README.md",
+    "minMemoryMbytes": 512,
+    "maxMemoryMbytes": 4096,
+    "storages": {
+        "dataset": {
+            "actorSpecification": 1,
+            "title": "HiringCafe jobs",
+            "description": "One row per job, newest first: title, company, places, remote or office, job type, seniority, years asked, published pay, skills, requirements, visa sponsorship, the employer's apply link and hiring system, and company facts; with details on, also the description. The run summary is the OUTPUT record, not a row.",
+            "fields": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job title (title)",
+                        "description": "The job title as the employer wrote it on its own career site.",
+                        "example": "Senior Data Analyst"
+                    },
+                    "company": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company name (company)",
+                        "description": "The hiring company, as HiringCafe names it.",
+                        "example": "OpenAI"
+                    },
+                    "location": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Main location (location)",
+                        "description": "Where the job is, as HiringCafe writes it: a city, state and country, a country for a job anywhere in it, or several places joined by \"or\".",
+                        "example": "London, England, United Kingdom"
+                    },
+                    "otherLocations": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Other locations (otherLocations)",
+                        "description": "Every other city the job names, including the places of copies of the same job that HiringCafe folded into this one.",
+                        "example": [
+                            "New York City, New York, United States"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "workType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Remote or office (workType)",
+                        "description": "remote, hybrid or onsite (in person, field work included), as HiringCafe reads the ad.",
+                        "example": "hybrid"
+                    },
+                    "employmentType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job type (employmentType)",
+                        "description": "full-time, part-time, contract, intern, temporary or volunteer. A job of several types shows the one you asked for, else its most specific; employmentTypes lists them all.",
+                        "example": "full-time"
+                    },
+                    "employmentTypes": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "All job types (employmentTypes)",
+                        "description": "Every job type the ad states.",
+                        "example": [
+                            "full-time",
+                            "intern"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "seniority": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job level (seniority)",
+                        "description": "HiringCafe's seniority rating of the job: No Prior Experience Required, Entry Level, Mid Level or Senior Level.",
+                        "example": "Senior Level"
+                    },
+                    "roleType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Manages people? (roleType)",
+                        "description": "Individual Contributor or People Manager, as HiringCafe reads the ad.",
+                        "example": "Individual Contributor"
+                    },
+                    "department": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job function (department)",
+                        "description": "The job's function, as HiringCafe groups it: Software Development, Data and Analytics, Sales and others.",
+                        "example": "Software Development"
+                    },
+                    "experienceMin": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "title": "Years asked (experienceMin)",
+                        "description": "The fewest years of experience the ad asks for, as HiringCafe reads it. Empty when the ad states none (about 4 jobs in 10).",
+                        "example": 5
+                    },
+                    "salary": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay as published (salary)",
+                        "description": "The pay range the employer published, with its currency and period. Empty when the employer published none: HiringCafe's own estimates are left out.",
+                        "example": "USD 266,000 - 445,000 per year"
+                    },
+                    "salaryMin": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Lowest pay (salaryMin)",
+                        "description": "The lowest published pay as a number, per salaryPeriod.",
+                        "example": 266000
+                    },
+                    "salaryMax": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Highest pay (salaryMax)",
+                        "description": "The highest published pay as a number, per salaryPeriod.",
+                        "example": 445000
+                    },
+                    "salaryCurrency": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay currency (salaryCurrency)",
+                        "description": "The currency of the published pay, as a three-letter code.",
+                        "example": "USD"
+                    },
+                    "salaryPeriod": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay period (salaryPeriod)",
+                        "description": "What the published pay is for: year, month, two weeks, week, day or hour.",
+                        "example": "year"
+                    },
+                    "skills": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Tools and skills (skills)",
+                        "description": "The tools and technologies the ad names, as HiringCafe lists them.",
+                        "example": [
+                            "Python",
+                            "SQL",
+                            "Spark"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "requirementsSummary": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Requirements (requirementsSummary)",
+                        "description": "HiringCafe's one-line summary of what the job asks for.",
+                        "example": "5+ years in data analytics; strong SQL and Python; dashboarding with Tableau or Power BI."
+                    },
+                    "visaSponsorship": {
+                        "type": [
+                            "boolean",
+                            "null"
+                        ],
+                        "title": "Visa sponsor? (visaSponsorship)",
+                        "description": "true when the ad says the employer sponsors work visas, as HiringCafe reads it.",
+                        "example": false
+                    },
+                    "postedAt": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Posted on (postedAt)",
+                        "description": "When the employer posted the job on its own career site, in UTC, as HiringCafe read it. Sites that give only the day are dated at midnight or noon of it.",
+                        "example": "2026-11-09T22:58:22.319Z"
+                    },
+                    "jobUrl": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "HiringCafe job page (jobUrl)",
+                        "description": "The job's page on hiringcafe.com.",
+                        "example": "https://hiringcafe.com/job/ebyx3hzfrtb5kuj8"
+                    },
+                    "applyUrl": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Employer apply link (applyUrl)",
+                        "description": "The job's own page on the employer's career site or applicant tracking system, where you apply.",
+                        "example": "https://jobs.ashbyhq.com/openai/8ddb799f-f0c7-4df8-9665-5016a1f39da3"
+                    },
+                    "ats": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Hiring system (ats)",
+                        "description": "The applicant tracking system or career site the job came from, in HiringCafe's words: ashby, grnhse (Greenhouse), lever, workday, icims2, taleo_careersection, smartrecruiters and over 40 more.",
+                        "example": "ashby"
+                    },
+                    "atsJobId": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job ID in that system (atsJobId)",
+                        "description": "The job's own ID in that hiring system, for matching it against other feeds. Empty when the system shows none.",
+                        "example": "8ddb799f-f0c7-4df8-9665-5016a1f39da3"
+                    },
+                    "companyWebsite": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company website (companyWebsite)",
+                        "description": "The company's website.",
+                        "example": "https://openai.com"
+                    },
+                    "companySlug": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company domain (companySlug)",
+                        "description": "The company's web domain, which also finds it in Only these companies (companies).",
+                        "example": "openai.com"
+                    },
+                    "companySize": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "title": "Employees (companySize)",
+                        "description": "The company's headcount, as HiringCafe enriched it.",
+                        "example": 7850
+                    },
+                    "companyIndustries": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Industries (companyIndustries)",
+                        "description": "The company's industries, as HiringCafe enriched it.",
+                        "example": [
+                            "Software & SaaS",
+                            "Scientific Research & Development"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "companyFounded": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "title": "Year founded (companyFounded)",
+                        "description": "The year the company was founded.",
+                        "example": 2015
+                    },
+                    "companyType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company type (companyType)",
+                        "description": "Public, Private, Government, Non-Profit or another organization type.",
+                        "example": "Private"
+                    },
+                    "companyFunding": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Latest funding (companyFunding)",
+                        "description": "The company's latest funding round or event: Series B, IPO, Private Equity and others.",
+                        "example": "Series F"
+                    },
+                    "companyHeadquarters": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company HQ (companyHeadquarters)",
+                        "description": "The country of the company's headquarters.",
+                        "example": "United States"
+                    },
+                    "status": {
+                        "type": "string",
+                        "title": "Still open? (status)",
+                        "description": "open for every search result (read live during the run). For a checked link: open, closed (HiringCafe marks the job expired) or not found (no such job).",
+                        "example": "open"
+                    },
+                    "platform": {
+                        "type": "string",
+                        "title": "Job board (platform)",
+                        "description": "Always hiringcafe.",
+                        "example": "hiringcafe"
+                    },
+                    "jobId": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "HiringCafe job ID (jobId)",
+                        "description": "HiringCafe's 16-character job ID, the end of its job link.",
+                        "example": "ebyx3hzfrtb5kuj8"
+                    },
+                    "checkedAt": {
+                        "type": "string",
+                        "title": "Checked at (checkedAt)",
+                        "description": "When the run read HiringCafe, in UTC.",
+                        "example": "2026-11-10T10:00:00+00:00"
+                    },
+                    "description": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job description (description)",
+                        "description": "The full job description as plain text, with details on.",
+                        "example": "We are looking for a Senior Data Analyst to own our product analytics..."
+                    },
+                    "descriptionHtml": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "As HTML (descriptionHtml)",
+                        "description": "The full job description as HTML, with details on.",
+                        "example": "<p>We are looking for a Senior Data Analyst...</p>"
+                    },
+                    "city": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Main city (city)",
+                        "description": "The city of the main location, with details on.",
+                        "example": "London"
+                    },
+                    "region": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Main state or region (region)",
+                        "description": "The state, province or region of the main location, with details on.",
+                        "example": "England"
+                    },
+                    "country": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Main country (country)",
+                        "description": "The country of the main location, with details on.",
+                        "example": "United Kingdom"
+                    },
+                    "countryCode": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Main country code (countryCode)",
+                        "description": "The two-letter code of that country, with details on.",
+                        "example": "GB"
+                    }
+                }
+            },
+            "views": {
+                "jobs": {
+                    "title": "Jobs",
+                    "description": "One row per job: what it is, where, remote or not, seniority, published pay, when it was posted, and the employer's own apply link.",
+                    "transformation": {
+                        "fields": [
+                            "title",
+                            "company",
+                            "location",
+                            "workType",
+                            "seniority",
+                            "salary",
+                            "postedAt",
+                            "applyUrl",
+                            "jobUrl",
+                            "status"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "title": {
+                                "label": "Job title (title)",
+                                "format": "text"
+                            },
+                            "company": {
+                                "label": "Company name (company)",
+                                "format": "text"
+                            },
+                            "location": {
+                                "label": "Main location (location)",
+                                "format": "text"
+                            },
+                            "workType": {
+                                "label": "Remote or office (workType)",
+                                "format": "text"
+                            },
+                            "seniority": {
+                                "label": "Job level (seniority)",
+                                "format": "text"
+                            },
+                            "salary": {
+                                "label": "Pay as published (salary)",
+                                "format": "text"
+                            },
+                            "postedAt": {
+                                "label": "Posted on (postedAt)",
+                                "format": "date"
+                            },
+                            "applyUrl": {
+                                "label": "Employer apply link (applyUrl)",
+                                "format": "link"
+                            },
+                            "jobUrl": {
+                                "label": "HiringCafe job page (jobUrl)",
+                                "format": "link"
+                            },
+                            "status": {
+                                "label": "Still open? (status)",
+                                "format": "text"
+                            }
+                        }
+                    }
+                },
+                "companies": {
+                    "title": "Companies",
+                    "description": "The company behind each job: headcount, industries, type, latest funding, headquarters, website and the hiring system the job came from.",
+                    "transformation": {
+                        "fields": [
+                            "title",
+                            "company",
+                            "companySize",
+                            "companyIndustries",
+                            "companyType",
+                            "companyFunding",
+                            "companyHeadquarters",
+                            "companyWebsite",
+                            "ats"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "title": {
+                                "label": "Job title (title)",
+                                "format": "text"
+                            },
+                            "company": {
+                                "label": "Company name (company)",
+                                "format": "text"
+                            },
+                            "companySize": {
+                                "label": "Employees (companySize)",
+                                "format": "number"
+                            },
+                            "companyIndustries": {
+                                "label": "Industries (companyIndustries)",
+                                "format": "array"
+                            },
+                            "companyType": {
+                                "label": "Company type (companyType)",
+                                "format": "text"
+                            },
+                            "companyFunding": {
+                                "label": "Latest funding (companyFunding)",
+                                "format": "text"
+                            },
+                            "companyHeadquarters": {
+                                "label": "Company HQ (companyHeadquarters)",
+                                "format": "text"
+                            },
+                            "companyWebsite": {
+                                "label": "Company website (companyWebsite)",
+                                "format": "link"
+                            },
+                            "ats": {
+                                "label": "Hiring system (ats)",
+                                "format": "text"
+                            }
+                        }
+                    }
+                },
+                "details": {
+                    "title": "Details",
+                    "description": "The description (with details on), job types, function, years asked, skills, requirements, pay as numbers, visa sponsorship and IDs.",
+                    "transformation": {
+                        "fields": [
+                            "title",
+                            "company",
+                            "description",
+                            "employmentTypes",
+                            "department",
+                            "roleType",
+                            "experienceMin",
+                            "skills",
+                            "requirementsSummary",
+                            "salaryMin",
+                            "salaryMax",
+                            "salaryCurrency",
+                            "salaryPeriod",
+                            "visaSponsorship",
+                            "atsJobId",
+                            "jobId",
+                            "checkedAt"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "title": {
+                                "label": "Job title (title)",
+                                "format": "text"
+                            },
+                            "company": {
+                                "label": "Company name (company)",
+                                "format": "text"
+                            },
+                            "description": {
+                                "label": "Job description (description)",
+                                "format": "text"
+                            },
+                            "employmentTypes": {
+                                "label": "All job types (employmentTypes)",
+                                "format": "array"
+                            },
+                            "department": {
+                                "label": "Job function (department)",
+                                "format": "text"
+                            },
+                            "roleType": {
+                                "label": "Manages people? (roleType)",
+                                "format": "text"
+                            },
+                            "experienceMin": {
+                                "label": "Years asked (experienceMin)",
+                                "format": "number"
+                            },
+                            "skills": {
+                                "label": "Tools and skills (skills)",
+                                "format": "array"
+                            },
+                            "requirementsSummary": {
+                                "label": "Requirements (requirementsSummary)",
+                                "format": "text"
+                            },
+                            "salaryMin": {
+                                "label": "Lowest pay (salaryMin)",
+                                "format": "number"
+                            },
+                            "salaryMax": {
+                                "label": "Highest pay (salaryMax)",
+                                "format": "number"
+                            },
+                            "salaryCurrency": {
+                                "label": "Pay currency (salaryCurrency)",
+                                "format": "text"
+                            },
+                            "salaryPeriod": {
+                                "label": "Pay period (salaryPeriod)",
+                                "format": "text"
+                            },
+                            "visaSponsorship": {
+                                "label": "Visa sponsor? (visaSponsorship)",
+                                "format": "boolean"
+                            },
+                            "atsJobId": {
+                                "label": "Job ID in that system (atsJobId)",
+                                "format": "text"
+                            },
+                            "jobId": {
+                                "label": "HiringCafe job ID (jobId)",
+                                "format": "text"
+                            },
+                            "checkedAt": {
+                                "label": "Checked at (checkedAt)",
+                                "format": "date"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "keyValueStore": {
+            "actorKeyValueStoreSchemaVersion": 1,
+            "title": "Run summary",
+            "description": "The OUTPUT record: how many jobs HiringCafe listed and how many matched and were saved, the checked links, the notes about how the input was read, the settings used and the calls made.",
+            "collections": {
+                "summary": {
+                    "title": "Run summary (OUTPUT)",
+                    "description": "Status, message, counts of jobs read, matched and saved, checked links, errors, notes, settings and calls.",
+                    "key": "OUTPUT"
+                }
+            }
+        }
+    }
+}

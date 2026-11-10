@@ -1,0 +1,20 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "HiringCafe Jobs Search output",
+    "description": "The jobs found, one row per job in the default dataset (switch between the Jobs, Companies and Details views), plus a run summary record.",
+    "type": "object",
+    "properties": {
+        "jobs": {
+            "type": "string",
+            "title": "Jobs found (jobs)",
+            "description": "Every saved job, newest first: title, company, places, remote or office, job type, seniority, years asked, published pay, skills, requirements, visa sponsorship, the employer's apply link and hiring system, and company facts; with details on, the description. Export as JSON, CSV or Excel.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        },
+        "summary": {
+            "type": "string",
+            "title": "Run summary (summary)",
+            "description": "The OUTPUT record in the default key-value store: jobs HiringCafe listed, jobs matched and saved, checked links, notes about how the input was read, the settings used and the calls made.",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/OUTPUT"
+        }
+    }
+}

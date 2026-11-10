@@ -1,0 +1,164 @@
+# Hiring Cafe Jobs Scraper & API - Salary & Visa Sponsorship Jobs
+
+> Hiring Cafe jobs scraper and API for HiringCafe (hiring.cafe): search 6 million jobs from employers' own career sites, newest first.
+
+## Summary
+
+Hiring Cafe Jobs Search is an Apify actor that searches HiringCafe (hiringcafe.com, formerly hiring.cafe) live, through the same search HiringCafe's own pages load, and returns one row per job, newest first: title, company, places, remote, hybrid or in person, job type, seniority, the least years of experience asked, published pay as text and numbers, tools and skills, a requirements summary, visa sponsorship, the employer's own apply link and the hiring system (ATS) it came from, and the company's headcount, industries, founding year, type, funding and headquarters. HiringCafe held about 6.2 million open jobs at 186,000 companies on 2026-11-10 (6,172,589). Unlike the other Hiring Cafe actors, every row's title holds the words you typed, an employer's every match is read and not only the 4 the site's search shows, published pay is kept apart from HiringCafe's estimates, and visa sponsorship and company size are filters. No login and no API key.
+
+Store: https://apify.com/anshumanatrey/hiringcafe-jobs-search
+Source: https://github.com/AnshumanAtrey/hiringcafe-jobs-search
+
+## Key features
+
+- All of HiringCafe, read live at run time, newest first by the time the employer posted the job; one search reaches the newest 10,000 employers, about 33,000 jobs.
+- The employer's own apply link on every row (applyUrl), with the hiring system (ats: Greenhouse, Lever, Workday, Ashby, iCIMS, Taleo, SmartRecruiters and 40+ more) and its job ID (atsJobId).
+- Titles that match: every word of a line in the title, in any order, plurals and Front-End forms included; Wider match returns HiringCafe's search-box answer.
+- Every match of an employer: the site shows 4 per employer per search, and this actor reads the employer's own list when its other jobs can make your answer.
+- HiringCafe's own filters: places (cities, states, countries, regions, Worldwide), remote or office, job type, posting period, years of experience, seniority, published pay reaching an amount, company size, visa sponsorship.
+- Reads a pasted HiringCafe search link with its words and filters, and checks pasted job links or job IDs (open, closed or not found).
+
+## Input keys
+
+- Job titles to find (searchTerms): one per line; a job matches when its title has every word; a place typed with the title (nurse in California) is searched as the place; a HiringCafe search link works too.
+- Where the job is (location): cities, states, countries or regions; Bangalore and Bengaluru both work; Remote alone asks for remote jobs.
+- Remote or office (workType): remote, hybrid or onsite (in person, field work too).
+- Posted in the last (postedWithin): 24 hours, 3, 7, 14 or 30 days (the default), any time, or your own period.
+- Experience (experienceYears): your years, such as 3, a range such as 2-5, 5+ or fresher; keeps jobs whose least years asked fit; a job stating none is left out.
+- Job level (seniority): no-experience, entry, mid or senior.
+- Job type (employmentType): full-time, part-time, contract, intern, temporary (seasonal too) or volunteer.
+- Minimum yearly pay (minSalary): the least yearly pay; jobs whose published pay reaches it in a year (hourly and monthly pay counted as a year's), in salaryCurrency.
+- Pay currency (salaryCurrency): USD by default, or any three-letter code.
+- Company size (companySize): 1-10, 11-50, 51-200, 201-500, 501-1000, 1001-2000, 2001-5000, 5001-10000, 10001+, or any range.
+- Sponsors visas (visaSponsorship): only jobs whose ad says the employer sponsors work visas.
+- Only these companies (companies): company names as HiringCafe writes them, or a company page link.
+- Number of jobs (maxJobs): 100 by default, 0 for every match.
+- Full details (includeDetails): adds the description as text and HTML, and the city, state and country.
+- Leave out words (excludeTerms): drops jobs whose title has these words.
+- Wider match (searchDescriptions): every job HiringCafe's search box finds for the words anywhere in the ad.
+- Job links to check (jobUrls): HiringCafe job links or 16-character job IDs.
+- Connection (proxyConfiguration): off by default; the run moves to Apify's residential proxy by itself when challenged.
+
+## Pricing
+
+PAY_PER_EVENT model, platform usage included:
+
+- Job: $0.0011 per saved job ($1.10 per 1,000), and per checked link that is closed or not found
+- Job with details: $0.0012 per saved job with full details on ($1.20 per 1,000)
+- Run start: $0.003 per GB of memory, charged by Apify when a run starts, so $0.003 at the default 512 MB
+
+Typical costs (default memory):
+
+- 100 newest jobs: $0.113
+- 100 jobs with full details: $0.123
+- 1,000 jobs: $1.10
+
+Apify's free $5 monthly credit covers about 4,400 jobs in runs of 100.
+
+## Speed
+
+Seconds to a minute for a few hundred jobs: on a laptop on 2026-11-10 the form as it opens took 27 s for 100 jobs, software engineer 25 s and registered nurse in California 28 s; 2,000 data analyst jobs took 10 minutes from the laptop's own address, which Cloudflare slowed down. One address gets about 80 calls 2 seconds apart before HiringCafe's Cloudflare blocks it for a while; on Apify a run then moves to the residential proxy, a fresh address every 30 calls.
+
+## How to call it
+
+- Apify API: POST https://api.apify.com/v2/acts/anshumanatrey~hiringcafe-jobs-search/run-sync-get-dataset-items with the input as JSON and the header Authorization: Bearer <APIFY_TOKEN>. It returns the rows and waits up to 300 seconds, so start runs of thousands of jobs with a client.
+- Python and JavaScript: the apify-client package, actor anshumanatrey/hiringcafe-jobs-search.
+- n8n: the Apify node, Run an Actor and get dataset. Make: the Apify app's Run an Actor and Get Dataset Items modules.
+- MCP: https://mcp.apify.com?tools=anshumanatrey/hiringcafe-jobs-search, signed in with Apify or with Authorization: Bearer <APIFY_TOKEN>.
+
+## When to use
+
+- The user wants jobs from HiringCafe or hiring.cafe, or a HiringCafe API, by title, place, pay, seniority or date.
+- The user wants jobs straight from employers' own career sites, with the apply link on the employer's site and the ATS it runs.
+- The user wants jobs that sponsor visas, jobs at small companies, or jobs with a published pay above an amount.
+- The user wants a daily feed of new jobs for a role or a place, newest first.
+- The user wants every open job of one company on HiringCafe, or to check whether HiringCafe job links are still open.
+
+## When NOT to use
+
+- The user needs change tracking between runs or alerts by Telegram, Slack or webhook: blackfalcondata/hiringcafe-scraper offers them; here, schedule daily with postedWithin 24 hours and match on jobId.
+- The user needs a radius around a point: HiringCafe's search takes one, this actor keeps jobs that name the place.
+- The user needs HiringCafe's pay estimates for jobs without a published pay: this actor keeps published pay only.
+
+## Sample input
+
+```json
+{
+  "searchTerms": ["data analyst", "business analyst"],
+  "location": ["London", "Remote EMEA"],
+  "seniority": ["entry", "mid"],
+  "postedWithin": "7 days",
+  "maxJobs": 100
+}
+```
+
+## Sample output (one record)
+
+From a local run on 2026-11-10, software engineer (fields shortened to the main ones).
+
+```json
+{
+  "title": "Software Development Engineer, Amazon Publisher Monetization - Video Ads, Ads - Video Demand - Fixed",
+  "company": "Amazon",
+  "location": "New York City, New York, United States",
+  "workType": "onsite",
+  "employmentType": "full-time",
+  "salary": "USD 158,100 - 213,800 per year",
+  "postedAt": "2026-11-10T08:07:47.805Z",
+  "jobUrl": "https://hiringcafe.com/job/x3mo8glxcf7f8h0o",
+  "applyUrl": "https://www.amazon.jobs/en/jobs/10600812/software-development-engineer-amazon-publisher-monetization-video-ads-ads-video-demand-fixed",
+  "status": "open",
+  "platform": "hiringcafe",
+  "companySlug": "amazon.com",
+  "jobId": "x3mo8glxcf7f8h0o",
+  "experienceMin": 3,
+  "seniority": "Mid Level",
+  "skills": [
+    "C#",
+    "C++",
+    "Java",
+    "Perl"
+  ],
+  "salaryMin": 158100.0,
+  "salaryMax": 213800.0,
+  "salaryCurrency": "USD",
+  "salaryPeriod": "year",
+  "visaSponsorship": false,
+  "companySize": 1576000,
+  "companyFunding": "IPO",
+  "ats": "adhoc",
+  "atsJobId": "10600812"
+}
+```
+
+## Differentiators vs alternatives
+
+- vs memo23/apify-hiring-cafe-scraper ($0.00125 per row, $0.005 start; the most used): the site's search passed through, 4 jobs per employer, raw nested records; this actor checks titles, reads every match of an employer, keeps published pay apart from estimates and adds visa sponsorship and company size filters, at $0.0011 a job.
+- vs blackfalcondata/hiringcafe-scraper ($0.00115 per row, $0.005 start): 50 country markets, radius, incremental mode and notifications; this actor takes cities, states, regions and old city names, checks titles and reads every match of an employer.
+- vs parsebird/hiring-cafe-scraper ($0.003 per job): a stealth browser on a residential proxy at 4 GB; this actor reads the same search with plain HTTP at 512 MB.
+
+## Sibling actors
+
+- Greenhouse Jobs Scraper (https://apify.com/anshumanatrey/greenhouse-jobs-search): Jobs from every company on Greenhouse, searched live
+- Lever Jobs Scraper (https://apify.com/anshumanatrey/lever-jobs-search): Jobs from 2,300+ companies on Lever (jobs.lever.co), searched live
+- Workday Jobs Scraper (https://apify.com/anshumanatrey/workday-job-search): Jobs from every company on Workday (myworkdayjobs.com), searched live
+- Ashby Jobs Scraper (https://apify.com/anshumanatrey/ashby-jobs-search): Jobs from every company on Ashby (jobs.ashbyhq.com), searched live
+- SmartRecruiters Jobs Scraper (https://apify.com/anshumanatrey/smartrecruiters-jobs-search): Jobs from 2,900+ companies on SmartRecruiters, searched live
+- Workable Jobs Scraper (https://apify.com/anshumanatrey/workable-job-search): Jobs from every company on Workable, in one search
+- Cornerstone Jobs Scraper (https://apify.com/anshumanatrey/cornerstone-jobs-search): Jobs from every company on Cornerstone (csod.com), searched live
+- Deel Jobs Scraper (https://apify.com/anshumanatrey/deel-jobs-search): Jobs from every company on Deel ATS (jobs.deel.com), with pay
+
+## Documentation
+
+- Apify Store: https://apify.com/anshumanatrey/hiringcafe-jobs-search
+- GitHub repo: https://github.com/AnshumanAtrey/hiringcafe-jobs-search
+- Issues / feedback: GitHub Issues on the above repo
+- License: MIT
+
+## Maintainer
+
+Anshuman Atrey (https://github.com/AnshumanAtrey), who publishes a portfolio of data and OSINT actors on Apify Store. Feature requests and bugs: LinkedIn (https://linkedin.com/in/anshumanatrey, fastest), GitHub issues, or atrey.dev.
+
+## Last updated
+
+2026-11-10

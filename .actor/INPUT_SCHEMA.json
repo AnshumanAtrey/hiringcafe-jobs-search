@@ -1,0 +1,301 @@
+{
+    "title": "HiringCafe Jobs Search",
+    "description": "Type a job title and press Start: you get the newest matching jobs on HiringCafe (hiringcafe.com), the job search engine built from employers' own career sites, with each job's own apply link. Every other field is optional. Press Start with the form empty for the newest jobs of every kind.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "searchTerms": {
+            "title": "Job titles to find (searchTerms)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Type the job titles or keywords to find, one per line, for example data analyst. A job matches when its title has every word of a line, in any order: frontend also finds Front-End, nurses finds Registered Nurse. A place typed with the title, as in nurse in California, is searched as the place. Leave it empty for the newest jobs of every kind. A pasted HiringCafe search link (hiringcafe.com/?searchState=...) works too, with its filters.",
+            "placeholderValue": "software engineer",
+            "example": [
+                "software engineer"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "location": {
+            "title": "Where the job is (location)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Type where the jobs should be: cities, states, countries or regions, one per line, for example London, California, Germany, EMEA or Worldwide. A city keeps the jobs that name it (Bangalore and Bengaluru both work), a country or region also keeps remote jobs open there. Remote typed alone asks for remote jobs. Leave it empty for anywhere.",
+            "placeholderValue": "London",
+            "example": [
+                "London"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "workType": {
+            "title": "Remote or office (workType)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick remote, hybrid or onsite (in person, field work too), or several. Leave it empty for all of them. HiringCafe states the work arrangement of every job, and the search asks HiringCafe for it. Typed words such as wfh or office work too.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "remote",
+                    "hybrid",
+                    "onsite"
+                ],
+                "enumTitles": [
+                    "Remote",
+                    "Hybrid",
+                    "In person (onsite)"
+                ]
+            },
+            "example": [
+                "remote"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "postedWithin": {
+            "title": "Posted in the last (postedWithin)",
+            "type": "string",
+            "editor": "select",
+            "description": "Pick how new the jobs must be: posted in the last 24 hours, 3, 7, 14 or 30 days. 30 days, the default, keeps the last month's jobs, newest first, and any time keeps every open job. The date is when the employer posted the job on its own career site, as HiringCafe read it. You can also type your own period, such as 48 hours or 2 weeks.",
+            "enumSuggestedValues": [
+                "24 hours",
+                "3 days",
+                "7 days",
+                "14 days",
+                "30 days",
+                "any time"
+            ],
+            "enumTitles": [
+                "24 hours",
+                "3 days",
+                "7 days",
+                "14 days",
+                "30 days",
+                "any time"
+            ],
+            "example": "24 hours",
+            "default": "30 days",
+            "nullable": true
+        },
+        "experienceYears": {
+            "title": "Experience (experienceYears)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Type your years of experience: a number such as 3, a range such as 2-5, 5+ for five or more, or fresher. A job is kept when the least experience it asks for fits yours: 3 keeps jobs asking for up to 3 years. HiringCafe reads the years from each ad; when this is set, a job whose ad states none is left out. Leave it empty for every job.",
+            "example": "3",
+            "default": "",
+            "nullable": true
+        },
+        "seniority": {
+            "title": "Job level (seniority)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick the job levels to keep, as HiringCafe rates the seniority of each job: no-experience (no prior experience required), entry (entry level), mid (mid level) or senior (senior level), or several. Leave it empty for every level.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "no-experience",
+                    "entry",
+                    "mid",
+                    "senior"
+                ],
+                "enumTitles": [
+                    "No experience needed (no-experience)",
+                    "Entry level (entry)",
+                    "Mid level (mid)",
+                    "Senior level (senior)"
+                ]
+            },
+            "example": [
+                "entry"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "employmentType": {
+            "title": "Job type (employmentType)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick the job type: full-time, part-time, contract, intern, temporary (seasonal too) or volunteer, or several. Leave it empty for every job type. A job of two types, such as a full-time graduate internship, counts as both.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "full-time",
+                    "part-time",
+                    "contract",
+                    "intern",
+                    "temporary",
+                    "volunteer"
+                ],
+                "enumTitles": [
+                    "Full-time",
+                    "Part-time",
+                    "Contract or freelance (contract)",
+                    "Internship (intern)",
+                    "Temporary or seasonal (temporary)",
+                    "Volunteer"
+                ]
+            },
+            "example": [
+                "full-time"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "minSalary": {
+            "title": "Minimum yearly pay (minSalary)",
+            "type": "integer",
+            "editor": "number",
+            "unit": "a year",
+            "description": "Type the least yearly pay to keep, for example 120000 or 120k: jobs whose employer published pay that reaches it in a year, pay by the hour or month counted as a year's, in the currency below (salaryCurrency). Jobs that publish no pay are left out when this is set. Leave it empty for every job.",
+            "minimum": 0,
+            "example": 120000,
+            "default": null,
+            "sectionCaption": "Pay and company",
+            "nullable": true
+        },
+        "salaryCurrency": {
+            "title": "Pay currency (salaryCurrency)",
+            "type": "string",
+            "editor": "select",
+            "description": "Pick the currency of the minimum pay: USD by default, or EUR, GBP, CAD, AUD, INR or any other three-letter code you type. Only jobs paying in it are compared.",
+            "enumSuggestedValues": [
+                "USD",
+                "EUR",
+                "GBP",
+                "CAD",
+                "AUD",
+                "INR"
+            ],
+            "enumTitles": [
+                "US dollar (USD)",
+                "Euro (EUR)",
+                "Pound sterling (GBP)",
+                "Canadian dollar (CAD)",
+                "Australian dollar (AUD)",
+                "Indian rupee (INR)"
+            ],
+            "example": "USD",
+            "default": "USD",
+            "nullable": true
+        },
+        "companySize": {
+            "title": "Company size (companySize)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick company sizes by employees, as HiringCafe groups them: 1-10, 11-50, 51-200, 201-500, 501-1000, 1001-2000, 2001-5000, 5001-10000 or 10001+, or type a range such as 1-500. Leave it empty for every size.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "1-10",
+                    "11-50",
+                    "51-200",
+                    "201-500",
+                    "501-1000",
+                    "1001-2000",
+                    "2001-5000",
+                    "5001-10000",
+                    "10001+"
+                ],
+                "enumTitles": [
+                    "1-10 employees (1-10)",
+                    "11-50 employees (11-50)",
+                    "51-200 employees (51-200)",
+                    "201-500 employees (201-500)",
+                    "501-1,000 employees (501-1000)",
+                    "1,001-2,000 employees (1001-2000)",
+                    "2,001-5,000 employees (2001-5000)",
+                    "5,001-10,000 employees (5001-10000)",
+                    "Over 10,000 employees (10001+)"
+                ]
+            },
+            "example": [
+                "51-200"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "visaSponsorship": {
+            "title": "Sponsors visas (visaSponsorship)",
+            "type": "boolean",
+            "editor": "checkbox",
+            "description": "Tick to keep only jobs whose employer sponsors visas, as HiringCafe reads each ad: the ad says the employer sponsors work visas. Leave it unticked for every job.",
+            "default": false,
+            "nullable": true
+        },
+        "companies": {
+            "title": "Only these companies (companies)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Type company names to search only their jobs, one per line, as HiringCafe names them: OpenAI, Stripe, Deloitte. A HiringCafe company page link (hiringcafe.com/org/stripe.com) works too. Leave it empty to search every company.",
+            "placeholderValue": "OpenAI",
+            "example": [
+                "OpenAI"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "maxJobs": {
+            "title": "Number of jobs (maxJobs)",
+            "type": "integer",
+            "editor": "number",
+            "unit": "jobs",
+            "description": "Type how many jobs to get, newest first: 100 by default. Type 0 to get every matching job (HiringCafe shows the newest 10,000 companies of one search, about 33,000 jobs). Each job is one charged row, so this sets the most a run can cost.",
+            "prefill": 100,
+            "example": 100,
+            "default": 100,
+            "sectionCaption": "How many and how much",
+            "nullable": true
+        },
+        "includeDetails": {
+            "title": "Full details (includeDetails)",
+            "type": "boolean",
+            "editor": "checkbox",
+            "description": "Tick to add each job's full description, as text and HTML, from HiringCafe. Every row already has the apply link, pay when published, seniority, skills, requirements and company facts. A job with details costs more and the run reads each saved job once more.",
+            "default": false,
+            "nullable": true
+        },
+        "excludeTerms": {
+            "title": "Leave out words (excludeTerms)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Type words that leave a job out when its title has them, one per line, for example senior or intern. Leave it empty to keep every job.",
+            "placeholderValue": "senior",
+            "example": [
+                "senior"
+            ],
+            "default": [],
+            "sectionCaption": "Narrow the search",
+            "nullable": true
+        },
+        "searchDescriptions": {
+            "title": "Wider match (searchDescriptions)",
+            "type": "boolean",
+            "editor": "checkbox",
+            "description": "Tick for a wider match: every job HiringCafe's own search finds with your words anywhere in the ad, not only in the title. python then also finds a Data Engineer job that asks for Python.",
+            "default": false,
+            "nullable": true
+        },
+        "jobUrls": {
+            "title": "Job links to check (jobUrls)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Paste HiringCafe job links (hiringcafe.com/job/...) or job IDs to check whether they are still open, one per line, instead of searching. Each comes back open with the job (its description too with Full details ticked), closed, or not found.",
+            "placeholderValue": "https://hiringcafe.com/job/data-analyst-jwch-institute-united-states-23llqnpvt9uksz4i",
+            "default": [],
+            "sectionCaption": "Check job links",
+            "nullable": true
+        },
+        "proxyConfiguration": {
+            "title": "Connection (proxyConfiguration)",
+            "type": "object",
+            "editor": "proxy",
+            "description": "Leave the connection as it is: when HiringCafe's Cloudflare challenges the run's own address, the run moves to Apify's residential proxy by itself, a fresh address at each challenge, at no extra cost to you. Set a proxy here only to use your own from the first call.",
+            "default": {
+                "useApifyProxy": false
+            },
+            "sectionCaption": "Connection",
+            "nullable": true
+        }
+    }
+}
