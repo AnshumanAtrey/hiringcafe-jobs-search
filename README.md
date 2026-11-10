@@ -255,9 +255,9 @@ Hiring Cafe Jobs Scraper reads public job postings, the pages any visitor sees w
 
 - HiringCafe shows the newest 10,000 employers of one search, about 33,000 jobs: for the whole site that is its newest 12 hours. Narrow a broad search by place, period or words to reach older jobs.
 - An employer's own list is read up to 1,000 of its jobs in one search.
-- Pay is published on about 1 job in 7 (16 of 100 on the form as it opens); `salary` is empty for the rest.
-- Years of experience come from HiringCafe's reading of each ad and are stated on about half the jobs (46 to 60 in 100); with Experience (`experienceYears`) set, a job that states none is left out.
-- A few career sites give HiringCafe no place for a job (8 of 100 jobs on the form as it opens, all from one employer); those rows have no `location`, and a place search leaves them out.
+- Pay is published on a part of the jobs only (16 to 47 of 100 in the runs here, 2026-11-10); `salary` is empty for the rest.
+- Years of experience come from HiringCafe's reading of each ad and are stated on 28 to 77 jobs in 100 (the runs here); with Experience (`experienceYears`) set, a job that states none is left out.
+- A few career sites give HiringCafe no place for a job (8 of 100 jobs in one run, all from one employer); those rows have no `location`, and a place search leaves them out.
 - One employer can post the same job on two of its career sites (T. Rowe Price on 2026-11-10); the run keeps it once, the newest.
 - HiringCafe keeps no closed jobs in its search, and a job it removed reads as not found when its link is checked.
 - HiringCafe's Cloudflare blocks one address for a minute or more after about 80 calls 2 seconds apart. A run on Apify moves to a residential address at the first block; without a proxy it waits a block out (three times at most) and goes on 10 seconds a call, and a fourth block ends the reading with the jobs read so far saved.
