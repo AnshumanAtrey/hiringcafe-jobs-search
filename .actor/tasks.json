@@ -1,5 +1,5 @@
 {
- "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only), once the Actor is public. Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Task names are unique across the whole Apify account, so each carries hiringcafe. Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build. options follow defaultRunOptions in store.json.",
+ "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only), once the Actor is public. Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Task names are unique across the whole Apify account, so each carries hiringcafe. Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build. options follow defaultRunOptions in store.json. Tasks marked publish false stay saved but off the Store: the account publishes at most 100 pages across all actors, so each actor keeps 2 or more by its earnings and search traffic (2026-11-11).",
  "options": {
   "build": "latest",
   "memoryMbytes": 512,
@@ -8,6 +8,7 @@
  "tasks": [
   {
    "name": "hiringcafe-jobs-last-24-hours",
+   "publish": false,
    "title": "Find the newest HiringCafe jobs posted in the last 24 hours",
    "description": "Get the newest jobs on HiringCafe, posted on employers' own career sites in the last day, with the company, place, remote or office, seniority, published pay and the employer's apply link. Set Number of jobs to 0 to get every one, and schedule it daily for a fresh feed.",
    "input": {
@@ -108,6 +109,7 @@
   },
   {
    "name": "hiringcafe-data-analyst-jobs-london",
+   "publish": false,
    "title": "Find data analyst jobs in London on HiringCafe",
    "description": "Get the newest data analyst jobs in London from HiringCafe, with the company, hybrid or office, seniority, published pay in pounds, skills and the employer's own apply link.",
    "input": {
@@ -144,6 +146,7 @@
   },
   {
    "name": "hiringcafe-registered-nurse-jobs-california",
+   "publish": false,
    "title": "Find registered nurse jobs in California on HiringCafe",
    "description": "Get the newest registered nurse jobs in California from hospital and clinic career sites via HiringCafe, with the employer, city, shift and published hourly pay, and the employer's own apply link.",
    "input": {
@@ -180,6 +183,7 @@
   },
   {
    "name": "hiringcafe-product-manager-jobs-150k",
+   "publish": false,
    "title": "Find product manager jobs paying $150,000 or more on HiringCafe",
    "description": "Get the newest product manager jobs in the United States whose employer published pay reaching $150,000 a year, from HiringCafe, with the pay range, company, place, remote or office and the employer's apply link.",
    "input": {
@@ -218,6 +222,7 @@
   },
   {
    "name": "hiringcafe-entry-level-jobs",
+   "publish": false,
    "title": "Find entry level jobs posted this week on HiringCafe",
    "description": "Get the newest entry level and no-experience jobs posted in the last 7 days on HiringCafe, with the company, place, job type, published pay and the employer's apply link. Add a job title or a place to narrow it.",
    "input": {
@@ -254,6 +259,7 @@
   },
   {
    "name": "hiringcafe-startup-jobs",
+   "publish": false,
    "title": "Find jobs at startups with up to 200 employees on HiringCafe",
    "description": "Get the newest jobs at companies with 200 employees or fewer, by HiringCafe's headcount of each company, with the company's size, funding and industries, the place, published pay and the employer's apply link.",
    "input": {
@@ -292,6 +298,7 @@
   },
   {
    "name": "hiringcafe-software-engineer-jobs-bangalore",
+   "publish": false,
    "title": "Find software engineer jobs in Bangalore on HiringCafe",
    "description": "Get the newest software engineer jobs in Bangalore (Bengaluru) from company career sites via HiringCafe, with the company, hybrid or office, years of experience asked, skills and the employer's own apply link.",
    "input": {
@@ -328,6 +335,7 @@
   },
   {
    "name": "hiringcafe-jobs-with-descriptions",
+   "publish": false,
    "title": "Get HiringCafe jobs with their full descriptions",
    "description": "Get the newest data scientist jobs on HiringCafe with each job's full description as text and HTML, besides the company, place, seniority, published pay, requirements and the employer's apply link.",
    "input": {
