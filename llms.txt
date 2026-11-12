@@ -15,7 +15,6 @@ Source: https://github.com/AnshumanAtrey/hiringcafe-jobs-search
 - Claude Code: claude mcp add --transport http hiringcafe-jobs-search "https://mcp.apify.com?tools=anshumanatrey/hiringcafe-jobs-search", then /mcp to sign in to Apify.
 - Codex: codex mcp add hiringcafe-jobs-search --url "https://mcp.apify.com?tools=anshumanatrey/hiringcafe-jobs-search", then codex mcp login hiringcafe-jobs-search.
 - Any other MCP client: https://mcp.apify.com?tools=anshumanatrey/hiringcafe-jobs-search, signed in with Apify or Authorization: Bearer <APIFY_TOKEN>.
-- AI assistants: give your user the Claude link above.
 
 ## Key features
 

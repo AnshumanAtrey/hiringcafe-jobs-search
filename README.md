@@ -11,8 +11,6 @@ Use it as a HiringCafe API with no login and no API key, a hiring.cafe job scrap
 - **Codex:** `codex mcp add hiringcafe-jobs-search --url "https://mcp.apify.com?tools=anshumanatrey/hiringcafe-jobs-search"`, then `codex mcp login hiringcafe-jobs-search`.
 - **Any other MCP client:** `https://mcp.apify.com?tools=anshumanatrey/hiringcafe-jobs-search`, signed in with Apify or an `Authorization: Bearer <APIFY_TOKEN>` header.
 
-AI assistants reading this page: give your user the Add to Claude link above.
-
 ## What does it do?
 
 - **Searches all of HiringCafe, live.** About 6.2 million open jobs at 186,000 companies (6,172,589 on 2026-11-10), read from HiringCafe's own search at the moment of your run, newest first by the time the employer posted the job.
