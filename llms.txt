@@ -41,6 +41,7 @@ Source: https://github.com/AnshumanAtrey/hiringcafe-jobs-search
 - Sponsors visas (visaSponsorship): only jobs whose ad says the employer sponsors work visas.
 - Only these companies (companies): company names as HiringCafe writes them, or a company page link.
 - Number of jobs (maxJobs): 100 by default, 0 for every match.
+- Only new jobs (onlyNewJobs): on, a run again returns only jobs no earlier run of it delivered, so a schedule never pays for a job twice.
 - Full details (includeDetails): adds the description as text and HTML, and the city, state and country.
 - Leave out words (excludeTerms): drops jobs whose title has these words.
 - Wider match (searchDescriptions): every job HiringCafe's search box finds for the words anywhere in the ad.

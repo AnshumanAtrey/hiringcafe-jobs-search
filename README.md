@@ -98,6 +98,7 @@ Nothing is required. Type a job title and press Start, or press Start with the f
 | Sponsors visas (`visaSponsorship`) | Only jobs whose ad says the employer sponsors work visas |
 | Only these companies (`companies`) | Company names as HiringCafe writes them (OpenAI, Stripe), or a HiringCafe company page link |
 | Number of jobs (`maxJobs`) | How many, newest first: 100 by default, 0 for every match |
+| Only new jobs (`onlyNewJobs`) | On: a run again returns only jobs no earlier run of it delivered, so a schedule never gets or pays for a job twice. Off by default |
 | Full details (`includeDetails`) | Adds the description as text and HTML, and the city, state and country |
 | Leave out words (`excludeTerms`) | Drops jobs whose title has these words, such as senior or intern |
 | Wider match (`searchDescriptions`) | Every job HiringCafe's search box finds for your words anywhere in the ad |
