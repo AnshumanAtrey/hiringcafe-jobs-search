@@ -1,0 +1,21 @@
+{
+  "name": "hiringcafe-jobs-search",
+  "version": "1.0.0",
+  "description": "Scrape HiringCafe jobs by title, city or country, newest first: the employer's own apply link, published pay, seniority, skills, company size. No login.",
+  "mcpServers": {
+    "hiringcafe-jobs-search": {
+      "httpUrl": "https://mcp.apify.com?tools=anshumanatrey/hiringcafe-jobs-search",
+      "headers": {
+        "Authorization": "Bearer ${APIFY_TOKEN}"
+      }
+    }
+  },
+  "settings": [
+    {
+      "name": "Apify API token",
+      "envVar": "APIFY_TOKEN",
+      "sensitive": true,
+      "description": "From Apify Console, Settings, API & Integrations. Runs bill to this account."
+    }
+  ]
+}

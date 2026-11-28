@@ -3,6 +3,7 @@
 [![Run on Apify](https://img.shields.io/badge/Run%20on-Apify-246DFF?style=for-the-badge)](https://apify.com/anshumanatrey/hiringcafe-jobs-search) [![Add to Claude](https://img.shields.io/badge/Add%20to-Claude-D97757?style=for-the-badge)](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Hiring%20Cafe%20Jobs&connectorUrl=https%3A%2F%2Fmcp.apify.com%3Ftools%3Danshumanatrey%2Fhiringcafe-jobs-search) [![API examples](https://img.shields.io/badge/API-examples-24292F?style=for-the-badge)](examples)
 
 This repo is the public home of the [Hiring Cafe Jobs Scraper & API - Salary & Visa Sponsorship Jobs](https://apify.com/anshumanatrey/hiringcafe-jobs-search) actor on Apify: its docs, API examples in [`examples/`](examples), MCP setup and issues. The actor runs on Apify; its source code is private.
+In Gemini CLI: `gemini extensions install https://github.com/AnshumanAtrey/hiringcafe-jobs-search` (asks for your Apify API token).
 
 Hiring Cafe jobs scraper and API: search HiringCafe (hiringcafe.com, formerly hiring.cafe), the job search engine built from 6 million jobs on employers' own career sites, live by job title, place, remote or hybrid, posting date, years of experience, seniority, published salary, company size and visa sponsorship, and get each job's title, company, places, work arrangement, job type, seniority, years asked, published pay, tools and skills, requirements, the employer's own apply link and the hiring system it came from, newest first. Turn on full details for the description.
 
